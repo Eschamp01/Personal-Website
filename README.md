@@ -5,7 +5,9 @@ To plan your ideal holiday, simply fill out the information below, and TravelGPT
 
 This repository is a working progress, with some features still being implemented.
 
-The product will be deployed soon for testing. When that happens, the live URL will be provided below:
+The website has been deployed using Vercel, and the link is below:
+https://travel-gpt-tzrd.vercel.app/travel_plan/
+The backend is currently either very slow or not functional, this is being worked on currently.
 
 
 To clone this repository, use `git clone`, and access the OpenAI API here: https://openai.com/blog/openai-api <br>
