@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TravelGPT</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS styles */
+    /* Add your own custom styles here */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center" style="margin-top: 20px;">TravelGPT</h1>
+    <div style="margin-top: 15px;"></div>
+    <div class="text-center">
+    Welcome to TravelGPT, a ChatGPT powered assistant which aims to construct the perfect travel itinerary for you. <br>
+    To plan your ideal holiday, simply fill out the information below, and TravelGPT will do the rest!
+    </div>
+    <div style="margin-top: 15px;"></div>
+    
+    <h2 class="text-center" style="margin-top: 20px;">&#9992; Your Upcoming Trip &#9992;</h2>
+
+    <form id="myForm" action="{% url 'process_form' %}" method="POST">
+      <div class="form-group">
+        <div class="col-sm-9 col-lg-4 text-center mx-auto">
+          <label>Destination City:</label>
+          <input type="text" class="form-control" name="destination" id="destination" placeholder="Enter destination city">
+        </div>
+      </div>
+      
+      <div class="form-row text-center">
+        <div class="form-group col-sm-6 col-lg-3">
+          <label>Arrival Date:</label>
+          <input type="date" class="form-control" name="arrival-date" id="arrival-date">
+        </div>
+        <div class="form-group col-sm-6 col-lg-3">
+          <label>Arrival Time:</label>
+          <input type="time" class="form-control" name="arrival-time" id="arrival-time">
+        </div>
+        <div class="form-group col-sm-6 col-lg-3">
+          <label>Departure Date:</label>
+          <input type="date" class="form-control" name="departure-date" id="departure-date">
+        </div>
+        <div class="form-group col-sm-6 col-lg-3">
+          <label>Departure Time:</label>
+          <input type="time" class="form-control" name="departure-time" id="departure-time">
+        </div>
+      </div>
+      
+      <div class="form-group col-sm-6 col-lg-3 text-center mx-auto">
+        <label>Number of Travellers:</label>
+        <input type="number" class="form-control" name="num-travellers" id="num-travellers">
+      </div>
+      
+      <div class="form-group">
+        <label for="interests">Interests:</label>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interests" value="nature">
+            <label class="form-check-label" for="nature">Nature</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interests" value="wildlife">
+            <label class="form-check-label" for="wildlife">Wildlife</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interests" value="local-wines-and-beers">
+            <label class="form-check-label" for="local-wines-and-beers">Local Wines and Beers</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interests" value="local-food">
+            <label class="form-check-label" for="local-food">Local Food</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interests" value="famous-landmarks">
+            <label class="form-check-label" for="famous-landmarks">Famous Landmarks</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interests" value="beaches">
+            <label class="form-check-label" for="beaches">Beaches</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interests" value="hiking">
+            <label class="form-check-label" for="hiking">Hiking</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" name="interests" value="watersports">
+            <label class="form-check-label" for="watersports">Watersports</label>
+        </div>
+        <!-- Add more checkboxes as needed -->
+      </div>
+    
+      
+      <div class="form-row text-center">
+        <div class="form-group col-lg-3 mx-auto">
+          <label>Trip Intensity:</label>
+          <select class="form-control" id="trip-intensity" name="trip-intensity">
+            <option>Relaxed</option>
+            <option>Medium</option>
+            <option>Intense</option>
+          </select>
+        </div>
+
+        <div class="form-group col-lg-3 mx-auto">
+          <label>Physical Activity Level:</label>
+          <select class="form-control" id="activity-level" name="activity-level">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+
+        
+        <div class="form-group col-lg-3 mx-auto">
+          <label>Timing Preciseness:</label>
+          <select class="form-control" id="timing-preciseness" name="timing-preciseness">
+            <option>Specific Times Given</option>
+            <option>Rough Times Suggested</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <input type="checkbox" class="form-check-input" id="relaxed-first-day" name="relaxed-first-day">
+        <label class="form-check-label" for="relaxed-first-day">Relaxed First Day</label>
+      </div>
+      
+      <div style="margin-top: 15px;"></div>
+
+      <div class="d-flex justify-content-center">
+        <button button id="params_done_button" type="submit" class="btn btn-primary text-center">Submit</button>
+        {% comment %} <button id="params_done_button" type="button" class="btn btn-primary text-center">Submit</button> {% endcomment %}
+        {% comment %} <button type="button" id="params_done_button" class="btn btn-primary text-center">Submit</button> {% endcomment %}
+      </div>
+    </form>
+  </div>
+{% comment %} 
+  <div style="margin-top: 0.5cm;"></div>
+
+  <div class="text-center">
+    <a href="{% url 'itinerary_history' %}">View Itinerary History</a>
+  </div> {% endcomment %}
+
+  <script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent the default form submission behavior
+        
+        // Collect form data
+        var form = event.target;
+        var formData = new FormData(form);
+        
+        // Make a POST request
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", form.action);
+        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");  // Include the CSRF token if required
+        xhr.send(formData);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                  var response = JSON.parse(xhr.responseText);
+                  var itinerary = response.itinerary;
+                  console.log(itinerary)
+          
+                  // Redirect to the generated_itinerary view with the itinerary parameter
+                  window.location.href = "{% url 'generated_itinerary' %}?itinerary=" + encodeURIComponent(itinerary);
+                } else {
+                    // Handle error
+                    console.error(xhr.responseText);
+                }
+            }
+        };
+    });
+  </script>
+
+
+  {% comment %} <script>
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+  
+      // Retrieve form data
+      var formData = new FormData(this);
+  
+      // Perform any necessary operations with the form data
+  
+      // Send the form data via a POST request
+      fetch(this.action, {
+        method: 'POST',
+        body: formData
+      })
+      .then(function(response) {
+        if (response.ok) {
+          // Handle successful form submission
+          window.location.href = "{% url 'process_form' %}"; // Redirect to the desired URL
+        } else {
+          // Handle form submission error
+          console.log('Form submission error:', response);
+        }
+      })
+      .catch(function(error) {
+        // Handle any error during form submission
+        console.log('Form submission error:', error);
+      });
+    });
+  </script> {% endcomment %}
+
+  {% comment %} <script>
+    document.getElementById("params_done_button").addEventListener("click", function() {
+      destination = document.getElementById("destination").value
+      var data = {
+        "destination": destination
+      };
+
+      // Send an AJAX POST request to the Django view
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '{% url "process_form" %}', true);
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}'); // Add CSRF token if needed
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // Handle the response here if needed
+          console.log('Function executed successfully.');
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
+    });
+  </script> {% endcomment %}
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
