@@ -5,8 +5,8 @@ To plan your ideal holiday, simply fill out the information below, and TravelGPT
 
 This repository is a working progress, with some features still being implemented.
 
-The website has been deployed using Vercel, and the link is below:
-https://travel-gpt-tzrd.vercel.app/travel_plan/
+The website has been deployed using Vercel, and the link is below: <br>
+https://travel-gpt-tzrd.vercel.app/travel_plan/ <br>
 The backend is currently either very slow or not functional, this is being worked on currently.
 
 
