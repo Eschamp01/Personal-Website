@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "TravelGPT/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "TravelGPT/wsgi.py"
+      }
+    ]
+}

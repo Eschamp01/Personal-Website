@@ -1,0 +1,10 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path("", views.index, name="index"),
+    path('itinerary_history/', views.itinerary_history, name='itinerary_history'),
+    path("process_form/", views.process_form, name="process_form"),
+    path("generated_itinerary/", views.generated_itinerary, name="generated_itinerary"),
+    path("travel_plan/generated_itinerary/<int:itinerary_id>/", views.generated_itinerary, name="generated_itinerary"),
+]
