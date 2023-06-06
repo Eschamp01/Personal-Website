@@ -20,10 +20,10 @@ The website has been deployed using Vercel, and the link is below: <br>
 https://travel-gpt-tzrd.vercel.app/travel_plan/ <br>
 The backend is currently either very slow or not functional, this is being worked on currently.
 
-Currently, the front-end interface for the user to specify their vacation parameters looks like this:
+Currently, the front-end interface for the user to specify their vacation parameters looks like this: <br>
 <img/travel_gpt_initial_frontend>
 
-When all parameters are filled in, the output, which is the fully constructed travel itinerary, looks similar to this:
+When all parameters are filled in, the output, which is the fully constructed travel itinerary, looks similar to this: <br>
 <img/travel_gpt_initial_itinerary>
 
 
