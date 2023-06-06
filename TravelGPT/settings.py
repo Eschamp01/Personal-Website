@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-xe8#ehh(ttiiak5$uyy5c%y&v&bpw8y5r_m2d(w6c7r=h$1+rh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['travel-gpt-rc73-hk3a1lwe2-eschamp01.vercel.app', 'travel-gpt-rc73.vercel.app', 'travel-gpt-tzrd.vercel.app']
+ALLOWED_HOSTS = ['travel-gpt-rc73-hk3a1lwe2-eschamp01.vercel.app', 'travel-gpt-rc73.vercel.app', 'travel-gpt-tzrd.vercel.app', 'localhost']
 
 
 # Application definition
