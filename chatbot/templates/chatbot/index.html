@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // JavaScript code for the chatbot
+        $(document).ready(function() {
+            // Function to send a message to the chatbot
+            function sendMessage(message) {
+                // Make an AJAX request to your Django backend
+                $.ajax({
+                    url: '/chatbot/',
+                    type: 'POST',
+                    data: {
+                        'message': message
+                    },
+                    success: function(response) {
+                        // Process the response from the chatbot
+                        if (response && response.response) {
+                            var chatbotResponse = response.response;
+                            var chatbotResponseElement = $('#chatbot-response');
+                            chatbotResponseElement.empty();
+                            displayChatbotResponse(chatbotResponse, chatbotResponseElement, 0);
+                        } else {
+                            console.error('Invalid chatbot response:', response);
+                        }
+                    }
+                });
+
+                function displayChatbotResponse(response, element, index) {
+                    if (index < response.length) {
+                        element.append(response[index]);
+                        setTimeout(function() {
+                            displayChatbotResponse(response, element, index + 1);
+                        }, 50);  // Adjust the delay as desired (in milliseconds)
+                    }
+                }
+
+                //     success: function(response) {
+                //         // Process the response from the chatbot
+                //         if (response && response.response) {
+                //             var chatbotResponse = response.response;
+                //             $('#chat-window').append('<p><strong>You:</strong> ' + message + '</p>');
+                //             $('#chat-window').append('<p><strong>Chatbot:</strong> ' + chatbotResponse + '</p>');
+                //         } else {
+                //             console.error('Invalid chatbot response:', response);
+                //         }
+                //     }
+                // });
+            }
+            
+            // Handle form submission
+            $('form').submit(function(event) {
+                event.preventDefault();
+                var message = $('#user-input').val();
+                if (message) {
+                    // Send the user's message to the chatbot
+                    sendMessage(message);
+                    // Clear the input field
+                    $('#user-input').val('');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <div id="chat-window">
+        <!-- Chat window will be populated with messages -->
+        <p><strong>Chatbot:</strong> <span id="chatbot-response"></span></p>
+    </div>
+    <form>
+        <input type="text" id="user-input" autocomplete="off" placeholder="Type your message...">
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
