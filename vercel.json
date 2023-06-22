@@ -8,7 +8,7 @@
     "routes": [
       {
         "src": "/static/(.*)",
-        "dest": "TravelGPT/staticfiles/$1"
+        "dest": "static/$1"
       },
       {
         "src": "/(.*)",
