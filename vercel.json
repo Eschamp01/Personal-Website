@@ -10,7 +10,7 @@
       "src": "python manage.py collectstatic"
     },
     {
-      "src": "build.sh",
+      "src": "pip install -r requirements.txt",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "staticfiles_build"
