@@ -1,26 +1,14 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "TravelGPT/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    },
-    {
-      "use": "@vercel/static",
-      "config": {
-        "distDir": "static"
+    "builds": [
+      {
+        "src": "TravelGPT/wsgi.py",
+        "use": "@vercel/python"
       }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "TravelGPT/wsgi.py"
-    }
-  ]
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "TravelGPT/wsgi.py"
+      }
+    ]
 }
