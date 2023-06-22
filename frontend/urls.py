@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = 'travelgpt'
+
 urlpatterns = [
     path("", views.index, name="index"),
     path('itinerary_history/', views.itinerary_history, name='itinerary_history'),

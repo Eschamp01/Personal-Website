@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ariadne</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/ariadne_style.css' %}">
+    <style>
+
+      body::after {
+        content: "";
+        background: url('{% static 'img/greek_pattern.jpg' %}');
+        opacity: 0.5;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: fixed;
+        z-index: -1;   
+        background-size: 50%;
+        background-repeat: repeat;
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="container" style="background-color:rgba(255, 255, 255, 0.9); opacity:1;">
+
+      <div class="text-center d-flex align-items-center justify-content-center">
+        <img src="{% static 'img/ariadne_logo.png' %}" alt="Ariadne" class="myth-image">
+        <h1 class="mx-3">Ariadne</h1>
+        <img src="{% static 'img/thread.png' %}" alt="Thread" class="myth-image">
+      </div>
+      
+
+      <div class="text-center">
+        Hi, I'm Ariadne, a complex logic solver powered by ChatGPT. <br>
+        Ask me any complex logic question, and I will do my best to give the best answer I can, with all reasoning displayed. <br>
+        If you have any hints that you can give me, you can put them below too.
+      </div>
+
+      <div style="margin-top: 40px;"></div>
+
+      <h2>Please provide me with information about the problem!</h2>
+
+      <form id="problemForm" action="{% url 'ariadne:solve_problem' %}" method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="problem">Problem description</label>
+          <textarea class="form-control" id="problem" name="problem"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="problem">Is there any particular way that you'd like me to solve the problem? For example, "Focus on a numerical solution", or "Use creative reasoning".</label>
+          <textarea class="form-control" id="method" name="method"></textarea>
+        </div>
+
+        <input type="hidden" id="hintCount" name="hintCount" value="1">
+
+        <div id="hints">
+          <div class="form-group">
+              <label>Assumptions you'd like me to make:</label>
+              <br>
+      
+              {% comment %} <div id="hint1-group" class="hint-group">
+                  <label for="hint1">Assumption 1</label>
+                  <input type="text" class="form-control" id="hint1" name="hint_1">
+                  <button type="button" class="btn btn-secondary remove-hint">Remove</button>
+              </div> {% endcomment %}
+          </div>
+        </div>
+
+        <button type="button" id="addHint" class="btn btn-secondary mx-auto">Add assumption</button>
+        <div style="margin-top: 40px;"></div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary solve-button" style="background-color: #67b2c9">Solve</button>
+        </div>
+      </form>
+
+      <div class="text-center" style="margin-top: 20px;">
+        <a href="{% url 'homepage:index' %}">Go to Homepage</a>
+      </div>
+
+    </div>
+
+    
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/newName.js' %}"></script>
+</body>
+</html>

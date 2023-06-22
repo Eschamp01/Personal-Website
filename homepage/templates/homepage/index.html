@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edward Schamp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/home_style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/menu_style.css' %}"> -->
+</head>
+<body>
+    <!-- <details>
+        <summary></summary>
+        <nav class="menu">
+          <a href="#link">Home</a>
+          <a href="#link">Work</a>
+          <a href="#link">Links</a>
+          <a href="#link">Contact</a>
+          <a href="#link">About</a>
+        </nav>
+    </details> -->
+
+
+    <div class="container">
+
+        <div class="text-center">
+            <img src="{% static 'img/my_photo.jpg' %}" alt="Edward Schamp" style="width:200px;height:200px;" class="rounded-circle">
+            <h1 class="display-4">Edward Schamp</h1>
+        </div>
+
+        <div class="text-center">
+            <h2 class="display-5">Projects</h2>
+        </div>
+
+        <div class="card-deck text-center">
+            <div class="card project-card">
+                <img class="project-logo" src="{% static 'img/ariadne_logo.jpg' %}" alt="Ariadne Project">
+                <div class="card-body">
+                    <h5 class="card-title">Ariadne</h5>
+                    <a href="{% url 'ariadne:index' %}" class="btn btn-primary">Go to Ariadne</a>
+                </div>
+            </div>
+            <div class="card project-card">
+                <img class="project-logo" src="{% static 'img/travelgpt_logo.jpeg' %}" alt="TravelGPT Project">
+                <div class="card-body">
+                    <h5 class="card-title">TravelGPT</h5>
+                    <a href="{% url 'travelgpt:index' %}" class="btn btn-primary">Go to TravelGPT</a>
+                    <a href="https://github.com/Eschamp01/TravelGPT" class="btn btn-primary">Github Repo</a>
+
+
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-5">
+            <h2>Professional Experience</h2>
+            <hr>
+            <div class="experience">
+
+                <div class="job">
+                    <div class="job-title">Imagination Technologies: AI Researcher <span>London, Oct 2022-Present</span></div>
+                    <ul>
+                        <li>Optimised diffusion networks for image generation on the GPU and neural network accelerator</li>
+                        <li>Designed a novel sparse graph attention network architecture, improving inference up to 10x</li>
+                        <li>Communication: daily stand-up updates, weekly progress meetings and presentation of work</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-title">Imagination Technologies: AI Research Placement <span>London, Apr 2021-Sep 2021</span></div>
+                    <ul>
+                        <li>Optimised 2 neural networks for NLP, using cross-attention, for the neural network accelerator</li>
+                        <li>Trained 3 custom 4/8 bit quantised models (NLP with transformer), with accuracy within 1% of full precision</li>
+                    </ul>
+                </div>
+                
+                <div class="job">
+                    <div class="job-title">Southeastern Railway: Summer intern, Web Development <span>London, Jun 2020-Jul 2020</span></div>
+                    <ul>
+                        <li>Constructed a web module codebase to automate QR code scanning and processing</li>
+                        <li>Extended project for database compatibility and future integration with the internal system</li>
+                    </ul>
+                </div>
+            
+                <div class="job">
+                    <div class="job-title">FireTech: Summer tutor <span>London, Jul 2019-Aug 2019</span></div>
+                    <ul>
+                        <li>Prepared week-long daily lesson materials for the “Python”, and “C for robotics” courses</li>
+                        <li>Designed the activities program, involving two engaging 2-hour sessions each day</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="text-center">
+            <h2 class="display-5" style="margin-top: 30px;">Links</h2>
+            <a href="{% static 'docs/Edward_Schamp_CV_ML.pdf' %}" target="_blank">Resume</a> |
+            <a href="https://github.com/Eschamp01/" target="_blank">GitHub</a> |
+            <a href="https://www.linkedin.com/in/edwardschamp/" target="_blank">LinkedIn</a> |
+            <a href="mailto:edwardjls@gmail.com">Email me</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

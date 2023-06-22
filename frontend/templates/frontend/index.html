@@ -1,12 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
   <title>TravelGPT</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lobster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/standard_formatting.css' %}">
+
+  <!-- To use the select2 library: -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
+
+  <!-- <style>
+    <link rel="stylesheet" href="path/to/your/css/file.css">
     /* Custom CSS styles */
     /* Add your own custom styles here */
-  </style>
+  </style> -->
 </head>
 <body>
   <div class="container">
@@ -20,7 +31,7 @@
     
     <h2 class="text-center" style="margin-top: 20px;">&#9992; Your Upcoming Trip &#9992;</h2>
 
-    <form id="myForm" action="{% url 'process_form' %}" method="POST">
+    <form id="myForm" action="{% url 'travelgpt:process_form' %}" method="POST">
       <div class="form-group">
         <div class="col-sm-9 col-lg-4 text-center mx-auto">
           <label>Destination City:</label>
@@ -113,8 +124,8 @@
         <div class="form-group col-lg-3 mx-auto">
           <label>Timing Preciseness:</label>
           <select class="form-control" id="timing-preciseness" name="timing-preciseness">
-            <option>Specific Times Given</option>
-            <option>Rough Times Suggested</option>
+            <option>Specific</option>
+            <option>Approximate</option>
           </select>
         </div>
       </div>
@@ -127,18 +138,24 @@
       <div style="margin-top: 15px;"></div>
 
       <div class="d-flex justify-content-center">
-        <button button id="params_done_button" type="submit" class="btn btn-primary text-center">Submit</button>
-        {% comment %} <button id="params_done_button" type="button" class="btn btn-primary text-center">Submit</button> {% endcomment %}
-        {% comment %} <button type="button" id="params_done_button" class="btn btn-primary text-center">Submit</button> {% endcomment %}
+        <button button id="params_done_button" type="submit" class="btn btn-primary text-center" style="margin-top: 5px;">Calculate Itinerary!</button>
       </div>
     </form>
-  </div>
-{% comment %} 
-  <div style="margin-top: 0.5cm;"></div>
 
-  <div class="text-center">
-    <a href="{% url 'itinerary_history' %}">View Itinerary History</a>
-  </div> {% endcomment %}
+    <div id="loading-spinner" class="d-flex justify-content-center mx-auto" style="margin-top: 25px;">
+      <div class="spinner-border d-none" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p id="loading-text" class="mt-2 d-none" style="margin-left: 25px;">TravelGPT is constructing your itinerary...</p>
+    </div>
+
+    <div class="text-center" style="margin-top: -15px;">
+      <a href="{% url 'homepage:index' %}">Go to Homepage</a>
+    </div>
+
+  </div>
+
+  
 
   <script>
     document.getElementById('myForm').addEventListener('submit', function(event) {
@@ -147,6 +164,11 @@
         // Collect form data
         var form = event.target;
         var formData = new FormData(form);
+
+        // Display the loading spinner
+        document.getElementById('loading-spinner').querySelector('.spinner-border').classList.remove('d-none');
+        document.getElementById('loading-text').classList.remove('d-none');
+        document.getElementById('myForm').classList.add('d-none');
         
         // Make a POST request
         var xhr = new XMLHttpRequest();
@@ -155,13 +177,16 @@
         xhr.send(formData);
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
+              // Hide the loading spinner
+              document.getElementById('loading-spinner').style.display = 'none';
+              
                 if (xhr.status === 200) {
                   var response = JSON.parse(xhr.responseText);
                   var itinerary = response.itinerary;
                   console.log(itinerary)
           
                   // Redirect to the generated_itinerary view with the itinerary parameter
-                  window.location.href = "{% url 'generated_itinerary' %}?itinerary=" + encodeURIComponent(itinerary);
+                  window.location.href = "{% url 'travelgpt:generated_itinerary' %}?itinerary=" + encodeURIComponent(itinerary);
                 } else {
                     // Handle error
                     console.error(xhr.responseText);
@@ -171,61 +196,11 @@
     });
   </script>
 
-
-  {% comment %} <script>
-    document.getElementById("myForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent the default form submission behavior
-  
-      // Retrieve form data
-      var formData = new FormData(this);
-  
-      // Perform any necessary operations with the form data
-  
-      // Send the form data via a POST request
-      fetch(this.action, {
-        method: 'POST',
-        body: formData
-      })
-      .then(function(response) {
-        if (response.ok) {
-          // Handle successful form submission
-          window.location.href = "{% url 'process_form' %}"; // Redirect to the desired URL
-        } else {
-          // Handle form submission error
-          console.log('Form submission error:', response);
-        }
-      })
-      .catch(function(error) {
-        // Handle any error during form submission
-        console.log('Form submission error:', error);
-      });
+  <script>
+    $(document).ready(function() {
+        $('.form-control').select2();
     });
-  </script> {% endcomment %}
-
-  {% comment %} <script>
-    document.getElementById("params_done_button").addEventListener("click", function() {
-      destination = document.getElementById("destination").value
-      var data = {
-        "destination": destination
-      };
-
-      // Send an AJAX POST request to the Django view
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '{% url "process_form" %}', true);
-      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-      xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}'); // Add CSRF token if needed
-
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          // Handle the response here if needed
-          console.log('Function executed successfully.');
-        }
-      };
-
-      xhr.send(JSON.stringify(data));
-    });
-  </script> {% endcomment %}
-
+  </script>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
