@@ -7,10 +7,20 @@
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     },
     {
-      "src": "pip install -r requirements.txt"
+      "src": "pip install -r requirements.txt",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles_build"
+      }
     },
     {
       "src": "python3.9 manage.py collectstatic",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles_build"
+      }
+    },
+    {
       "use": "@vercel/static-build",
       "config": {
         "distDir": "staticfiles_build"
