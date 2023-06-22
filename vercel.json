@@ -7,7 +7,7 @@
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     },
     {
-      "src": "build_files.sh",
+      "src": "python manage.py collectstatic --noinput",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "staticfiles_build"
