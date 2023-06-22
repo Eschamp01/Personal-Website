@@ -8,7 +8,7 @@
     "routes": [
       {
         "src": "/static/(.*)",
-        "dest": "your-django-project/staticfiles/$1"
+        "dest": "TravelGPT/staticfiles/$1"
       },
       {
         "src": "/(.*)",
