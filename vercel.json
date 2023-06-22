@@ -7,6 +7,10 @@
     ],
     "routes": [
       {
+        "src": "/static/(.*)",
+        "dest": "your-django-project/staticfiles/$1"
+      },
+      {
         "src": "/(.*)",
         "dest": "TravelGPT/wsgi.py"
       }
