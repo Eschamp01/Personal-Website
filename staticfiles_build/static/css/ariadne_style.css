@@ -1,0 +1,46 @@
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.mythology-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.myth-image {
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
+  }
+  
+
+.container {
+    background-color: rgba(255, 255, 255, 1);
+    opacity: 1;
+}
+
+h1 {
+    font-size: 340%;  /* Increase the font size by 30% */
+  }
+
+
+.hint-input {
+flex: 1 0 90%; /* this will make the input take up 80% of the space */
+}
+
+.remove-hint {
+flex: 1 0 10%; /* this will make the button take up 20% of the space */
+}
+
+.remove-hint, .solve-button {
+    background-color: #67b2c9; /* this is a light blue color */
+    border-color: #13303a; /* if you also want to change the border color */
+    color: black; /* change color of text if needed */
+}
+  
+  

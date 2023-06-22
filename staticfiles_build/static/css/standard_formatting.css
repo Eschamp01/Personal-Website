@@ -1,0 +1,100 @@
+:root {
+    --primary-color: #1A8B9D;
+}
+
+body {
+    background-color: #F3F8F2;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+}
+
+h1, h2, label, .form-check-label, a, 
+.select2-container--default .select2-selection--single .select2-selection__rendered, 
+.select2-container--default .select2-selection--single .select2-selection__arrow,
+.spinner-border {
+    color: var(--primary-color);
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h1, h2 {
+    font-family: 'Lobster', cursive;
+}
+
+.form-control, .form-check-input, 
+.select2-container--default .select2-selection--single {
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+}
+
+.form-control:focus, 
+.select2-container--default.select2-container--focus .select2-selection--single,
+.select2-container--default.select2-container--open .select2-selection--single {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(26,139,157, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #136F7A;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: var(--primary-color) transparent transparent transparent;
+}
+
+.select2-dropdown {
+    border-color: var(--primary-color);
+}
+
+.select2-results__option--highlighted,
+.select2-results__option--highlighted[aria-selected] {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+.select2-results__option {
+    font-family: 'Lobster', cursive;
+    color: var(--primary-color);
+  }
+  
+  .select2-results__option[aria-selected="true"] {
+    background-color: #136F7A;
+    color: #ffffff;
+  }
+  
+  .select2-container--open .select2-dropdown {
+    border-color: var(--primary-color);
+  }
+  
