@@ -20,8 +20,6 @@ body {
     border-radius: 5px;
 }
 
-
-
 .icon-circle {
     background: #ccc;
     border-radius: 50%;
@@ -89,4 +87,21 @@ font-size: 18px; /* Adjust as needed */
     max-width: 95%; /* Adjust as necessary */
     height: auto;
 }
-  
+
+.github-button {
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.github-button:hover {
+    background-color: #e8e8e8;
+}

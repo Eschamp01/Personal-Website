@@ -45,7 +45,7 @@
             <main class="col-12 col-md-12 col-xl-8 bd-content main" role="main">
                 <div class="text-center mx-auto col-12 col-md-10 col-xl-10" style="margin-top: 20px;">
                     <div class="row mx-auto">
-                        <h1 class="bd-title col" id="site-title">
+                        <h1 class="bd-title col-6" id="site-title">
                             <div style="margin-top:20px;">
                                 Hi, I'm Edward.
                                 <a class="anchorjs-link" href="#site-title" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
@@ -65,7 +65,7 @@
 
                 <div class="row justify-content-center" style="margin-top:30px;">
 
-                    <div class="col-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
+                    <div class="col-5 col-xs-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
                         <a href="{% static 'docs/Edward_Schamp_CV_ML.pdf' %}" style="text-decoration:none;">
                             <div class="icon-container mb-3">
                                 <img src="{% static 'img/cv_icon.png' %}">
@@ -77,7 +77,7 @@
                     </div>
 
                     
-                    <div class="col-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
+                    <div class="col-5 col-xs-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
                         <a href="https://www.linkedin.com/in/edwardschamp/" style="text-decoration:none;">
                             <div class="icon-container mb-3">
                                 <img src="{% static 'img/linkedin_icon.png' %}">
@@ -88,7 +88,7 @@
                         </a>
                     </div>
 
-                    <div class="col-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
+                    <div class="col-5 col-xs-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px; margin-top:20px;">
                         <a href="https://github.com/Eschamp01/" style="text-decoration:none;">
                             <div class="icon-container mb-3">
                                 <img src="{% static 'img/github_icon.png' %}">
@@ -99,7 +99,7 @@
                         </a>
                     </div>
 
-                    <div class="col-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
+                    <div class="col-5 col-xs-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px; margin-top:20px;">
                         <a href="mailto:edwardjls@gmail.com" style="text-decoration:none;">
                             <div class="icon-container mb-3">
                                 <img src="{% static 'img/mail_icon.png' %}">
@@ -128,24 +128,57 @@
                     <div class="row justify-content-center projects-box" style="margin-top:-5px;">
 
                         <div class="col text-center">
-                            <a href="{% url 'travelgpt:index' %}" style="text-decoration:none;">
-                                <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
+                                <a href="{% url 'travelgpt:index' %}" style="text-decoration:none;">
                                     <img src="{% static 'img/travelgpt_logo.ico' %}" class="project-logo">
-                                </div>
-                                <div class="label" style="margin-top: -15px; colour:black;">
-                                    <h3 style="color:black;">TravelGPT</h3>
-                                    <a class="anchorjs-link" href="#travelgpt" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
+                                    <div class="label" style="margin-top: 0px; colour:black;">
+                                        <h3 style="color:black;">TravelGPT</h3>
+                                        <a class="anchorjs-link" href="#travelgpt" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
+                                        </a>
+                                        <div style="margin-top:-20px;">
+                                            <p>
+                                                An LLM-powered travel itinerary constructor.
+                                            </p>
+                                        </div>
+                                    </div>    
+                                </a>
+                                <div style="margin-top:20px; margin-bottom: 20px;">
+                                    <a href="https://github.com/Eschamp01/TravelGPT/tree/main/frontend#-welcome-to-travelgpt-" class="github-button" 
+                                    style="background-color: white; border: 2px solid black; color: black; padding: 10px; border-radius:5px;">
+                                    Project GitHub
                                     </a>
-                                    <p>
-                                        An LLM-powered travel itinerary constructor.
-                                    </p>
                                 </div>
-                            </a>
+                            </div>
                         </div>
 
                         <div class="col text-center">
-                            <a href="{% url 'ariadne:index' %}" style="text-decoration:none;">
-                                <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
+                                <a href="{% url 'ariadne:index' %}" style="text-decoration:none;">
+                                    <img src="{% static 'img/ariadne_logo.png' %}" class="project-logo">
+                                    <div class="label" style="margin-top: 0px; colour:black;">
+                                        <h3 style="color:black;">Ariadne</h3>
+                                        <a class="anchorjs-link" href="#ariadne" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
+                                        </a>
+                                        <div style="margin-top:-20px;">
+                                            <p>
+                                                An LLM-powered step-by-step problem solver.
+                                            </p>
+                                        </div>
+                                    </div>    
+                                </a>
+                                <div style="margin-top:20px; margin-bottom: 20px;">
+                                    <a href="https://github.com/Eschamp01/TravelGPT/tree/main/frontend#-welcome-to-travelgpt-" class="github-button" 
+                                    style="background-color: white; border: 2px solid black; color: black; padding: 10px; border-radius:5px;">
+                                    Project GitHub
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% comment %} <div class="col text-center">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
+                                <a href="{% url 'ariadne:index' %}" style="text-decoration:none;">
+                                
                                     <img src="{% static 'img/ariadne_logo.png' %}" class="project-logo">
                                 </div>
                                 <div class="label" style="margin-top: -15px;">
@@ -157,7 +190,7 @@
                                     </p>
                                 </div>
                             </a>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
 
@@ -179,7 +212,7 @@
                     <div class="row justify-content-center skills-row">
 
                         <div class="col-6 col-sm-4 col-md-2 text-center">
-                            <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
                                 <img src="{% static 'img/python_icon.png' %}" class="smaller-image">
                             </div>
                             <div class="label smaller-font">
@@ -188,7 +221,7 @@
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-2 text-center">
-                            <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
                                 <img src="{% static 'img/pytorch_icon.png' %}" class="smaller-image">
                             </div>
                             <div class="label smaller-font">
@@ -197,7 +230,7 @@
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-2 text-center">
-                            <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
                                 <img src="{% static 'img/terminal_icon.png' %}" class="smaller-image">
                             </div>
                             <div class="label smaller-font">
@@ -206,7 +239,7 @@
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-2 text-center">
-                            <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
                                 <img src="{% static 'img/html_css_icon.png' %}" class="smaller-image">
                             </div>
                             <div class="label" id="html-css-font" >
@@ -215,7 +248,7 @@
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-2 text-center">
-                            <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
                                 <img src="{% static 'img/git_icon.png' %}" class="smaller-image">
                             </div>
                             <div class="label smaller-font">
@@ -234,7 +267,7 @@
                     <div class="row justify-content-center skills-row">
 
                         <div class="col-6 col-sm-4 col-md-2 text-center">
-                            <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
                                 <img src="{% static 'img/cpp_icon.png' %}" class="smaller-image">
                             </div>
                             <div class="label smaller-font">
@@ -243,7 +276,7 @@
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-2 text-center">
-                            <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
                                 <img src="{% static 'img/javascript_icon.png' %}" class="smaller-image">
                             </div>
                             <div class="label smaller-font">
@@ -252,7 +285,7 @@
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-2 text-center">
-                            <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
                                 <img src="{% static 'img/tensorflow_icon.png' %}" class="smaller-image">
                             </div>
                             <div class="label smaller-font">
@@ -261,7 +294,7 @@
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-2 text-center">
-                            <div class="icon-container mb-3">
+                            <div class="icon-container mb-3" style="margin-top:10px;">
                                 <img src="{% static 'img/sql_icon.png' %}" class="smaller-image">
                             </div>
                             <div class="label smaller-font">
@@ -273,7 +306,7 @@
                             <div class="icon-container mb-3">
                                 <img src="{% static 'img/go_icon.png' %}" class="smaller-image">
                             </div>
-                            <div class="label smaller-font">
+                            <div class="label smaller-font" style="margin-top:10px;">
                                 Go
                             </div>
                         </div>
@@ -293,26 +326,26 @@
                         </p>
     
                         <div class="row hobbies-row" style="margin-bottom:20px; margin-top:-5px;">
-                            <!-- Running icon -->
+
                             <div class="col text-center">
-                            <div class="icon-container">
-                                <img src="{% static 'img/running_icon.png' %}">
+                                <div class="icon-container" style="margin-top:10px;">
+                                    <img src="{% static 'img/running_icon.png' %}">
+                                </div>
+                                <div class="icon-label">Running</div>
                             </div>
-                            <div class="icon-label">Running</div>
-                            </div>
-                            <!-- Bouldering icon -->
+
                             <div class="col text-center">
-                            <div class="icon-container">
-                                <img src="{% static 'img/bouldering_icon.png' %}">
+                                <div class="icon-container" style="margin-top:10px;">
+                                    <img src="{% static 'img/bouldering_icon.png' %}">
+                                </div>
+                                <div class="icon-label">Bouldering</div>
                             </div>
-                            <div class="icon-label">Bouldering</div>
-                            </div>
-                            <!-- Gymming icon -->
-                            <div class="col text-center">
-                            <div class="icon-container">
-                                <img src="{% static 'img/gymming_icon.png' %}">
-                            </div>
-                            <div class="icon-label">Gymming</div>
+
+                            <div class="col text-center" style="margin-top:10px;">
+                                <div class="icon-container">
+                                    <img src="{% static 'img/gymming_icon.png' %}">
+                                </div>
+                                <div class="icon-label">Gymming</div>
                             </div>
                         </div>
                     </div>
