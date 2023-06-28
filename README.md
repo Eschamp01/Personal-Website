@@ -1,44 +1,48 @@
-# Welcome to TravelGPT
+<div align="center">
+  <h1> Welcome to TravelGPT </h1>
+</div>
 
-## Contents
+### Contents (click to jump to a section)
 
 [Project Description](#project-description) <br>
 [Project Demo](#project-demo) <br>
-[Prompt engineering details](#prompt-engineering-details) <br>
+[Prompt Engineering Details](#prompt-engineering-details) <br>
 [Testing and Contributing](#testing-and-contributing)
+
 
 ### Project Description
 
 TravelGPT is a ChatGPT powered assistant which aims to construct the perfect travel itinerary for you. <br>
-To plan your ideal holiday, simply fill out the information below, and TravelGPT will do the rest!
-
-This repository is a working progress, with features still being implemented. Follow along!
-
+To plan your ideal holiday, simply fill out the information in the form given [here](https://edwardschamp.com/travel_plan/), and TravelGPT will do the rest! <br>
+Note that the backend is currently not deployed, and examples have been provided in an attempt to demonstrate the user experience.
 
 ### Project Demo
 
-The website has been deployed using Vercel, and you can [interact with the user interface here](https://travel-gpt-tzrd.vercel.app/travel_plan/). <br>
-Currently, the request takes too long for the Vercel free plan, so the "Submit" button doesn't do anything. <br>
+The website has been deployed using Vercel, and you can interact with the user interface [here](https://edwardschamp.com/travel_plan/). <br>
+Currently, the request takes too long for the Vercel free plan, so the "Submit" button doesn't do anything. <br> <br>
+Examples of the output are given for different configurations for the cities of [Beijing](https://www.edwardschamp.com/travel_plan/beijing), [Barcelona](https://www.edwardschamp.com/travel_plan/barcelona) and [Prague](https://www.edwardschamp.com/travel_plan/prague)
+
 To test the program, it is recommended to clone the repo, following the instructions in [Testing and Contributing](#testing-and-contributing)
-
-Currently, the front-end interface, allowing the user to specify their vacation parameters, looks like this: <br>
-![travel_gpt_initial_frontend](./img/travel_gpt_initial_frontend.jpg)
-
-When all parameters are filled in, you are redirected to a page which looks similar to this: <br>
-![travel_gpt_initial_itinerary](./img/travel_gpt_initial_itinerary.jpg)
 
 ### Prompt engineering details
 
-This project relies heavily on prompt engineering to construct the desired output. The prompt engineering is done in the python function `construct_prompt(dict)` in the file `frontend/openai_api.py`. The function `construct_prompt(dict)` takes the dictionary of user input parameters as input, and uses each of these to construct the single best performing prompt.
+See the code in action -> [construct_prompt function](https://github.com/Eschamp01/TravelGPT/blob/18ee629f64364ffcc338248ce96643584dabbc09/frontend/openai_api.py#L43C16-L43C16)
+
+This project relies heavily on prompt engineering to construct the desired output. The function [construct_prompt(dict)](https://github.com/Eschamp01/TravelGPT/blob/18ee629f64364ffcc338248ce96643584dabbc09/frontend/openai_api.py#L43C16-L43C16) takes the dictionary of user input parameters as input, and uses each of these to construct the single best performing prompt.
 
 Currently, the main sections of the prompt are as follows:
-1. Output tone is set - TravelGPT is instructed to function as a travel agency, offering the best possible travel suggestions, tailored to the client's preferences.
-2. User input is used - Information such as the client's arrival time, departure time, and interests is contained within a delimited section which is written from the client's perspective.
+1. Instructing the model - TravelGPT is instructed to function as a travel agency, offering the best possible travel suggestions, tailored to the client's preferences. This part sets the output tone.
+2. Input data is provided - Information such as the client's arrival time, departure time, and interests is contained within a delimited section which is written from the client's perspective.
 3. Output formatting - The output is specified to be in HTML format, with different days of the itinerary seperated into different sections, and text formatting instructions are given.
-4. Activity timing and formatting - Additional instructions are given for formatting the timing of the trip, based on if the user prefers a precisely timed trip or a roughly timed trip.
-5. Final reminders - Important parts, such as leaving enough travel time for getting to the airport, are reiterated once more.
+4. Additional context - Additional instructions are given for formatting the timing of the trip, based on if the user prefers a precisely timed trip or a roughly timed trip.
+5. Final context - Important parts, such as leaving enough travel time for getting to the airport, are reiterated once more.
 
 These 5 steps currently give quite nice results using the `text-davinci-003` and `gpt-3.5-turbo` models. Less capable models ar eunable to generate the content in HTML formatting, and give less detailed activity descriptions. To use these models, such as `text-curie-001`, the output formatting would need to be created, and multiple prompts would need to be used, throughout multiple API calls.
+
+### Next Steps
+
+- Use travel dates to fetch the weather and temperature for each day, and adjust activities accordingly
+- Suggest a suitable accomodation area to stay in, and provide transport options for how to get to the activities on each day
 
 Many papers such as [AutoML-GPT](https://arxiv.org/abs/2305.02499) have demonstrated that LLMs yield superior performance when complex prompts are broken down into smaller, step-by-step instructions, which are fed into the LLM one after the other. These smaller prompts can be generated by the LLM itself, allowing the user to, as the authors of the AutoML-GPT paper put it: "automatically utilizing LLMs to automate the training pipeline". This is a path which could potentially greatly improve the performance of this project, by constructing prompts which generate the itinerary for each day individually, according to prompts which are constructed based on the users preferences, and prompt engineered for optimal performance.
 
