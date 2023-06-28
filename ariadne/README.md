@@ -1,5 +1,5 @@
 <div align="center">
-  <h1> Welcome to TravelGPT </h1>
+  <h1> Welcome to Ariadne </h1>
 </div>
 
 ### Contents (click to jump to a section)
@@ -12,39 +12,57 @@
 
 ### Project Description
 
-TravelGPT is a ChatGPT powered assistant which aims to construct the perfect travel itinerary for you. <br>
-To plan your ideal holiday, simply fill out the information in the form given [here](https://edwardschamp.com/travel_plan/), and TravelGPT will do the rest! <br>
+Ariadne is a ChatGPT powered assistant which aims to provide concise and concrete solutions to problems. <br>
+
+Ariadne got its name from the character in Greek mythology who enabled Theseus to escape the labyrinth by using a ball of string, after Theseus had slain the Minotaur. In this project, Ariadne enables the Large Language Model to solve any problem by breaking it down into smaller steps which can be followed, in a similar manner to how Theseus followed the string. <br>
+
+In cases where ChatGPT cannot provide an answer, or provides an answer which is much longer than necessary, Ariadne becomes the problem solver of choice. <br>
+
 Note that the backend is currently not deployed, and examples have been provided in an attempt to demonstrate the user experience.
 
 ### Project Demo
 
-The website has been deployed using Vercel, and you can interact with the user interface [here](https://edwardschamp.com/travel_plan/). <br>
+The website has been deployed using Vercel, and you can interact with the user interface [here](https://edwardschamp.com/ariadne/). <br>
 Currently, the request takes too long for the Vercel free plan, so the "Submit" button doesn't do anything. <br> <br>
-Examples of the output are given for different configurations for the cities of [Beijing](https://www.edwardschamp.com/travel_plan/beijing), [Barcelona](https://www.edwardschamp.com/travel_plan/barcelona) and [Prague](https://www.edwardschamp.com/travel_plan/prague)
+Examples of the output are given for a [Numerical problem](http://localhost:8000/ariadne/plane), a [Worded problem](http://localhost:8000/ariadne/moon) and a [Mix of both](http://localhost:8000/ariadne/robots)
 
 To test the program, it is recommended to clone the repo, following the instructions in [Testing and Contributing](#testing-and-contributing)
 
-### Prompt engineering details
+### Prompt Engineering Details
 
-See the code in action -> [construct_prompt function](https://github.com/Eschamp01/TravelGPT/blob/18ee629f64364ffcc338248ce96643584dabbc09/frontend/openai_api.py#L43C16-L43C16)
+In the current implementation, there are two prompts which are constructed for each problem that the user wants to solve:
+- The first prompt instructs the Large Language Models to construct the steps required to successfully obtain a solution to the problem.
+- The second prompt instructs the Large Language model to provide an answer to each step, and in doing so, answer the over-arching problem.
 
-This project relies heavily on prompt engineering to construct the desired output. The function [construct_prompt(dict)](https://github.com/Eschamp01/TravelGPT/blob/18ee629f64364ffcc338248ce96643584dabbc09/frontend/openai_api.py#L43C16-L43C16) takes the dictionary of user input parameters as input, and uses each of these to construct the single best performing prompt.
+Jump to the functions in the code: [Step-by-step breakdown](https://github.com/Eschamp01/TravelGPT/blob/18ee629f64364ffcc338248ce96643584dabbc09/ariadne/openai_api.py#L32C5-L32C5) -> [Give answers forn each step](https://github.com/Eschamp01/TravelGPT/blob/18ee629f64364ffcc338248ce96643584dabbc09/ariadne/openai_api.py#L94C5-L94C5)
 
-Currently, the main sections of the prompt are as follows:
-1. Instructing the model - TravelGPT is instructed to function as a travel agency, offering the best possible travel suggestions, tailored to the client's preferences. This part sets the output tone.
-2. Input data is provided - Information such as the client's arrival time, departure time, and interests is contained within a delimited section which is written from the client's perspective.
-3. Output formatting - The output is specified to be in HTML format, with different days of the itinerary seperated into different sections, and text formatting instructions are given.
-4. Additional context - Additional instructions are given for formatting the timing of the trip, based on if the user prefers a precisely timed trip or a roughly timed trip.
-5. Final context - Important parts, such as leaving enough travel time for getting to the airport, are reiterated once more.
+The main sections of the **step construction prompt** are as follows:
+1. Instructing the model - The model is instructed to construct informative and concise steps, which are easy to follow.
+2. Example response - An example of a problem, and a response which the model should give when presented with this problem, is given. This makes this implementation an example of one-shot learning. This serves to show the model exactly what form of answer it should provide.
+3. Output formatting - The format of the answer, although it can be inferred from the example, is specified verbally, to ensure that the model will provide a valid output.
+4. Main input - The problem which the model will break down into smaller steps is given, inside the delimiters “*** ***”.
+5. Context given by user - The way in which the user has specified that the problem should be tackled, was well as any assumptions that the user has provided, are given to the model in delimiters.
 
-These 5 steps currently give quite nice results using the `text-davinci-003` and `gpt-3.5-turbo` models. Less capable models ar eunable to generate the content in HTML formatting, and give less detailed activity descriptions. To use these models, such as `text-curie-001`, the output formatting would need to be created, and multiple prompts would need to be used, throughout multiple API calls.
+The main sections of the **step answering prompt** are as follows:
+1. Instructing the model - The model is instructed to construct clear and precise answers, which are not longer then necessary.
+2. Example response - An example of the response which the model should give when presented with the steps, and the original problem, is given. This is also one-shot learning.
+3. Output formatting - The required output format is again reiterated.
+4. Context - The original problem is provided, in the delimiters “*** ***”
+5. Main input - The steps which the model must solve are provided, in the delimiters “<<< >>>”
 
 ### Next Steps
 
-- Use travel dates to fetch the weather and temperature for each day, and adjust activities accordingly
-- Suggest a suitable accomodation area to stay in, and provide transport options for how to get to the activities on each day
+Currently, a new front-end page is being constructed which will operate in the following way:
 
-Many papers such as [AutoML-GPT](https://arxiv.org/abs/2305.02499) have demonstrated that LLMs yield superior performance when complex prompts are broken down into smaller, step-by-step instructions, which are fed into the LLM one after the other. These smaller prompts can be generated by the LLM itself, allowing the user to, as the authors of the AutoML-GPT paper put it: "automatically utilizing LLMs to automate the training pipeline". This is a path which could potentially greatly improve the performance of this project, by constructing prompts which generate the itinerary for each day individually, according to prompts which are constructed based on the users preferences, and prompt engineered for optimal performance.
+1. The user provides the problem, how they wish the problem to be solved, and any assumptions that must be made or known to solve the problem correctly. 
+2. Ariadne only constructs the solution steps that it thinks are suitable, using the user input.
+3. The user can edit the steps, and choose to recalculate any given step by clicking on it. 
+4. Step 4 can be repeated until the user is happy with the steps.
+5. Ariadne will now produce answers to the steps by taking each step, and constructing a prompt to calculate the answer. The prompt will include information on the problem, along with the answers to all previous steps. 
+6. The user can edit any of the answers which Ariadne has given, and recalculate any answers they choose to by clicking on that answer.
+7. This process is repeated until the user is happy with the answers to each step, and the problem is solved.
+
+The goal of the above implementation is to allow Large Language Models to solve absolutely any task, no matter how large or complex, after enough iterations. If the user interface is sufficiently easy to use, this represents a significant step forward for Large Language Models, since there will no longer a task which they will fail to answer correctly, after enough feedback from the user.
 
 ### Testing and Contributing
 
