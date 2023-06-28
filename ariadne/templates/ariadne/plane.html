@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moon</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/ariadne_style.css' %}">
+    <link rel="icon" href="{% static 'img/ariadne_logo.png' %}" type="image/png">
+
+    <style>
+        body::after {
+            content: "";
+            background: url('{% static 'img/greek_pattern.jpg' %}');
+            opacity: 0.5;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: fixed;
+            z-index: -1;   
+            background-size: 50%;
+            background-repeat: repeat;
+        }
+
+        .chat-gpt img {
+            max-width: 70%;
+            height: auto;
+        }
+
+        .ariadne-text img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container" style="background-color:rgba(255, 255, 255, 0.9); opacity:1;">
+        <div style="margin-top: 15px; margin-bottom: 15px;" class="col-12 ariadne-text text-center">
+            <h1 style="margin-top: 20px;">Ariadne Form</h1>
+            <img src="{% static 'img/examples/ping_pong_q.jpg' %}">
+        </div>
+        <div style="margin-top: 15px; margin-bottom: 15px;" class="col-12 ariadne-text text-center">
+            <h1 style="margin-top: 20px;">Ariadne Response</h1>
+            <img src="{% static 'img/examples/ping_pong_a.jpg' %}">
+        </div>
+        <div style="margin-top: 15px; margin-bottom: 15px;" class="col-12 chat-gpt text-center">
+            <h1 style="margin-top: 20px;">ChatGPT Response</h1>
+            <img src="{% static 'img/examples/ping_pong_c.jpg' %}">
+        </div>
+    </div>
+    
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/addHint.js' %}"></script>
+</body>
+</html>

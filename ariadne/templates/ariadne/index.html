@@ -5,6 +5,7 @@
     <title>Ariadne</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/ariadne_style.css' %}">
+    <link rel="icon" href="{% static 'img/ariadne_logo.png' %}" type="image/png">
     <style>
 
       body::after {
@@ -39,7 +40,16 @@
         If you have any hints that you can give me, you can put them below too.
       </div>
 
-      <div style="margin-top: 40px;"></div>
+      <h2 class="text-center" style="margin-bottom: -30px; margin-top: 10px;">Examples</h2>
+
+      <div class="container">
+        <div class="row">
+          <div class="col text-center" style="margin-left: -15px; margin-bottom: 10px;">
+            <a id="params_done_button" href="{% url 'ariadne:plane' %}" class="btn btn-primary text-center" style="background-color: #67b2c9; margin-right: 20px;">Numerical Problem</a>
+            <a id="params_done_button" href="{% url 'ariadne:moon' %}" class="btn btn-primary text-center" style="background-color: #67b2c9;">Worded Problem</a>
+            <a id="params_done_button" href="{% url 'ariadne:robots' %}" class="btn btn-primary text-center" style="background-color: #67b2c9; margin-left: 20px;">Mixed Problem</a>
+        </div>
+      </div>
 
       <h2>Please provide me with information about the problem!</h2>
 
@@ -56,7 +66,7 @@
           <textarea class="form-control" id="method" name="method"></textarea>
         </div>
 
-        <input type="hidden" id="hintCount" name="hintCount" value="1">
+        <input type="hidden" id="hintCount" name="hintCount" value="0">
 
         <div id="hints">
           <div class="form-group">
@@ -81,6 +91,10 @@
       <div class="text-center" style="margin-top: 20px;">
         <a href="{% url 'homepage:index' %}">Go to Homepage</a>
       </div>
+{% comment %} 
+      <div class="text-center" style="margin-top: 20px;">
+        <a href="{% url 'ariadne:improved_index' %}">Better index page</a>
+      </div> {% endcomment %}
 
     </div>
 
@@ -88,6 +102,6 @@
   
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/newName.js' %}"></script>
+    <script src="{% static 'js/addHint.js' %}"></script>
 </body>
 </html>

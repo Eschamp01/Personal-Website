@@ -20,7 +20,7 @@
   
 
 .container {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgb(255, 255, 255);
     opacity: 1;
 }
 
@@ -37,10 +37,10 @@ flex: 1 0 90%; /* this will make the input take up 80% of the space */
 flex: 1 0 10%; /* this will make the button take up 20% of the space */
 }
 
-.remove-hint, .solve-button {
+.remove-hint, .solve-button, .example-button {
     background-color: #67b2c9; /* this is a light blue color */
     border-color: #13303a; /* if you also want to change the border color */
-    color: black; /* change color of text if needed */
+    color: rgb(255, 255, 255); /* change color of text if needed */
 }
   
   

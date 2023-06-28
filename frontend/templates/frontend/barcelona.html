@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TravelGPT</title>
+  <link rel="icon" href="{% static 'img/travelgpt_logo.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lobster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/standard_formatting.css' %}">
+
+  <style>
+    .responsive-images img {
+        max-width: 90%;
+        height: auto;
+    }
+
+    .input_form img {
+        max-width: 50%;
+        height: auto;
+    }
+    </style>    
+  
+</head>
+<body>
+    
+    <div style="margin-top: 15px;" class="col-12 responsive-images text-center">
+        <h1 style="margin-top: 20px;">TravelGPT Form</h1>
+        <div class="input_form">
+            <img src="{% static 'img/examples/barcelona_q.jpg' %}">
+        </div>
+        <h1 style="margin-top: 20px;">TravelGPT Response</h1>
+        <img src="{% static 'img/examples/barcelona_a_1.jpg' %}">
+        <img src="{% static 'img/examples/barcelona_a_2.jpg' %}">
+    </div>
+    
+
+    <div style="margin-top: 15px;">
+        
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

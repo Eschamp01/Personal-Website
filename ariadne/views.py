@@ -16,6 +16,8 @@ def solve_problem(request):
 
         hintCount = int(request.POST.get('hintCount'))
         assumptions = [request.POST.get(f'hint_{i}') for i in range(1, hintCount+1)]
+        if hintCount == 0:
+            assumptions = [""]
 
         problem_params_dict = {
             'problem' : request.POST.get('problem'),
@@ -41,3 +43,15 @@ def solve_problem(request):
         return render(request, 'ariadne/solver.html', result)
 
     return HttpResponse("The reauest was meant to be a POST request, but this one was not.")
+
+def improved_index(request):
+    return render(request, 'ariadne/improved_index.html')
+
+def moon(request):
+    return render(request, 'ariadne/moon.html')
+
+def plane(request):
+    return render(request, 'ariadne/plane.html')
+
+def robots(request):
+    return render(request, 'ariadne/robots.html')

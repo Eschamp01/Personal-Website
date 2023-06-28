@@ -81,7 +81,7 @@ def construct_prompt(dict):
     # Timing precision and how to allocate travel time to/from the airport
     prompt += "Remember to allocate time from the arrival time until 2.5 hours after the arrival time for travel from the airport, and time from \
         2.5 hours before departure time until departure time for travel back to the airport. \n"
-    if dict['timing_preciseness'] == "Specific Times Given":
+    if dict['timing_preciseness'] == "Specific":
         prompt += "Provide the specific time range for when each activity should be done. Each activity heading should be in h4 tags, and be in the form \
             '[activity name] ([start time - end_time])' \
             Timings must be specific for every activity. \
@@ -103,5 +103,6 @@ def construct_prompt(dict):
 
 def create_travel_itinerary(dict):
     full_prompt = construct_prompt(dict)
+    pdb.set_trace()
     # generate output from engineered prompt
     return generate_better_text(full_prompt)

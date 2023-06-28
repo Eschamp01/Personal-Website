@@ -11,6 +11,7 @@ document.getElementById("addHint").addEventListener("click", function(event){
     const newHintDiv = document.createElement("div");
     newHintDiv.setAttribute("id", "hint" + hintCounter + "-group");
     newHintDiv.setAttribute("class", "hint-group d-flex"); // d-flex will make the elements display in line
+    newHintDiv.setAttribute("style", "margin-top: 5px;");
 
     // Create new input field
     const newHintInput = document.createElement("input");
@@ -36,7 +37,10 @@ document.getElementById("addHint").addEventListener("click", function(event){
     // Event listener for the remove button
     removeButton.addEventListener("click", function() {
         formGroupDiv.removeChild(newHintDiv);
+        hintCounter--;
+        hintCountElement.value = hintCounter.toString();
     });
+
+    const hintCountElement = document.getElementById("hintCount");
+    hintCountElement.value = hintCounter.toString();
 });
-
-

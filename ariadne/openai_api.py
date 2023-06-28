@@ -74,11 +74,12 @@ Your response: { \
     prompt += "*** "
 
     # Additional information and hint processing
-    prompt += "The user has given the following additional information to help you construct your step-by-step questions: "
-    prompt += "''' "
-    for assumption in dict['assumptions']:
-        prompt += " - " + assumption + " "
-    prompt += "''' "
+    if dict['assumptions'] is not [""]:
+        prompt += "The user has given the following additional information to help you construct your step-by-step questions: "
+        prompt += "''' "
+        for assumption in dict['assumptions']:
+            prompt += " - " + assumption + " "
+        prompt += "''' "
 
     if dict['method'] is not "":
         prompt += f"You should approach the problem in the following way: \

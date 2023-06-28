@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="icon" href="{% static 'img/ariadne_logo.png' %}" type="image/png">
+
+    <style>
+        .parent {
+            width: 100%;
+        }
+        #myDiv {
+            width: 25%;
+            min-height: 200px;
+            background-color: white;
+            border: 3px solid darkblue;
+            border-radius: 10px;
+            overflow: auto;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 50px);
+            grid-template-rows: repeat(3, 50px);
+            grid-gap: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+        .circle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="parent">
+    <div id="myDiv" contenteditable="false">Click or double click me.</div>
+</div>
+
+<div class="grid">
+    <div class="circle">1</div>
+    <div class="circle">2</div>
+    <div class="circle">3</div>
+    <div class="circle">4</div>
+    <div class="circle">5</div>
+    <div class="circle">6</div>
+    <div class="circle">7</div>
+    <div class="circle">8</div>
+    <div class="circle">9</div>
+    <div class="circle">10</div>
+    <div class="circle">11</div>
+    <div class="circle">12</div>
+</div>
+
+<script>
+    var div = document.getElementById('myDiv');
+
+    div.addEventListener('click', function(e) {
+        this.setAttribute('contenteditable', 'true');
+        this.focus();
+        var range = document.createRange();
+        var sel = window.getSelection();
+        range.setStart(this.childNodes[0], e.offsetX);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    });
+
+    div.addEventListener('dblclick', function() {
+        if (this.style.backgroundColor != 'white') {
+            this.style.backgroundColor = 'white';
+        } else {
+            this.style.backgroundColor = 'rgba(222, 160, 160, 1)';
+        }
+    });
+
+    div.addEventListener('blur', function() {
+        this.setAttribute('contenteditable', 'false');
+    });
+</script>
+
+<script>
+    var circles = document.getElementsByClassName('circle');
+
+    for (var i = 0; i < circles.length; i++) {
+        circles[i].addEventListener('click', function() {
+            if (this.style.backgroundColor == 'darkblue') {
+                this.style.backgroundColor = 'lightblue';
+                this.style.color = 'black';
+            } else {
+                this.style.backgroundColor = 'darkblue';
+                this.style.color = 'white';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
+

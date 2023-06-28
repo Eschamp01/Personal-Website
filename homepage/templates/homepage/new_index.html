@@ -1,0 +1,330 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edward Schamp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/new_home_style.css' %}">
+    <link rel="icon" href="{% static 'img/edward_logo.ico' %}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="{% static 'css/menu_style.css' %}"> -->
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
+
+            <div class="d-none d-xl-block col-xl-2 bd-toc" style="padding-top:40px;">
+                <ul class="section-nav sidebar-text"> 
+                    <li class="toc-entry toc-h2"><a href="#site-title">Introduction</a></li>
+                        <li class="toc-entry toc-h2"><a href="#projects">Projects</a></li>
+                        {% comment %} <ul>
+                            <li class="toc-entry toc-h3"><a href="#travelgpt">TravelGPT</a></li>
+                            <li class="toc-entry toc-h3"><a href="#ariadne">Ariadne</a></li>
+
+                        </ul> {% endcomment %}
+                    </li>
+                    <li class="toc-entry toc-h2"><a href="#skills">Skills</a></li>
+                    <li class="toc-entry toc-h2"><a href="#hobbies">Hobbies</a>
+                    {% comment %} Add more sections as appropriate {% endcomment %}
+                    {% comment %} <li class="toc-entry toc-h2"><a href="#experience">Experience</a></li>
+                    <li class="toc-entry toc-h2"><a href="#responsive-behaviors">Responsive behaviors</a>
+                        <ul>
+                            <li class="toc-entry toc-h3"><a href="#toggler">Toggler</a></li>
+                            <li class="toc-entry toc-h3"><a href="#external-content">External content</a>
+                                <ul>
+                                    <li class="toc-entry toc-h4"><a href="#collapsed-content">Collapsed content</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li> {% endcomment %}
+                </ul>
+            </div>
+            
+            <main class="col-12 col-md-12 col-xl-8 bd-content main" role="main">
+                <div class="text-center mx-auto col-12 col-md-10 col-xl-10" style="margin-top: 20px;">
+                    <div class="row mx-auto">
+                        <h1 class="bd-title col" id="site-title">
+                            <div style="margin-top:20px;">
+                                Hi, I'm Edward.
+                                <a class="anchorjs-link" href="#site-title" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
+                                </a>
+                            </div>
+                        </h1>
+                        <div id="profile-photo" class="col-4">
+                            <img src="{% static 'img/edward_photo.png' %}" class="project-logo">
+                        </div>
+                    </div>
+                    <p class="bd-lead my-description">
+                        I am a Machine Learning Researcher interested in providing societal benefit through technology.
+                        I'm also interested in the financial markets, especially in the applications of AI towards financial
+                        forecasting, and the latest news from the technology start-up scene.
+                    </p>
+                </div>
+
+                <div class="row justify-content-center" style="margin-top:30px;">
+
+                    <div class="col-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
+                        <a href="{% static 'docs/Edward_Schamp_CV_ML.pdf' %}" style="text-decoration:none;">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/cv_icon.png' %}">
+                            </div>
+                            <div class="label" style="color:black;">
+                                My CV
+                            </div>
+                        </a>
+                    </div>
+
+                    
+                    <div class="col-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
+                        <a href="https://www.linkedin.com/in/edwardschamp/" style="text-decoration:none;">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/linkedin_icon.png' %}">
+                            </div>
+                            <div class="label" style="color:black;">
+                                LinkedIn
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
+                        <a href="https://github.com/Eschamp01/" style="text-decoration:none;">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/github_icon.png' %}">
+                            </div>
+                            <div class="label" style="color:black;">
+                                GitHub
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-6 col-sm-4 col-md-2 text-center" style="margin-left:10px; margin-right:10px;">
+                        <a href="mailto:edwardjls@gmail.com" style="text-decoration:none;">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/mail_icon.png' %}">
+                            </div>
+                            <div class="label" style="color:black;">
+                                Email me
+                            </div>
+                        </a>
+                    </div>
+                    
+                </div>
+                
+
+                <div class="text-center mx-auto col-12 col-md-10 col-xl-10">
+                    <h2 id="projects" style="margin-top:50px;">
+                        <div>
+                            Projects
+                            <a class="anchorjs-link" href="#projects" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
+                            </a>
+                        </div>
+                    </h2>
+                    <p>
+                        Click on my projects below to take a look at what I have been working on!
+                    </p>
+
+                    <div class="row justify-content-center projects-box" style="margin-top:-5px;">
+
+                        <div class="col text-center">
+                            <a href="{% url 'travelgpt:index' %}" style="text-decoration:none;">
+                                <div class="icon-container mb-3">
+                                    <img src="{% static 'img/travelgpt_logo.ico' %}" class="project-logo">
+                                </div>
+                                <div class="label" style="margin-top: -15px; colour:black;">
+                                    <h3 style="color:black;">TravelGPT</h3>
+                                    <a class="anchorjs-link" href="#travelgpt" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
+                                    </a>
+                                    <p>
+                                        An LLM-powered travel itinerary constructor.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col text-center">
+                            <a href="{% url 'ariadne:index' %}" style="text-decoration:none;">
+                                <div class="icon-container mb-3">
+                                    <img src="{% static 'img/ariadne_logo.png' %}" class="project-logo">
+                                </div>
+                                <div class="label" style="margin-top: -15px;">
+                                    <h3 style="color:black;">Ariadne</h3>
+                                    <a class="anchorjs-link" href="#ariadne" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
+                                    </a>
+                                    <p>
+                                        An LLM-powered step-by-step problem solver.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center mx-auto col-12 col-md-10 col-xl-10">
+
+                    <h2 id="skills" style="margin-top:20px;">
+                        <div>
+                            Skills
+                            <a class="anchorjs-link" href="#skills" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
+                            </a>
+                        </div>
+                    </h2>
+
+                    <p class="text-center" style="margin-top: 0px; margin-bottom: 5px;">
+                        I am proficient in
+                    </p>
+
+                    <div class="row justify-content-center skills-row">
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/python_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label smaller-font">
+                                Python
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/pytorch_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label smaller-font">
+                                PyTorch
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/terminal_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label smaller-font">
+                                Linux CLI
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/html_css_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label" id="html-css-font" >
+                                HTML & CSS
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/git_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label smaller-font">
+                                Git
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+                    
+                    <p class="text-center" style="margin-top:20px; margin-bottom: 5px;">
+                        I have a good understanding of
+                    </p>
+
+                    <div class="row justify-content-center skills-row">
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/cpp_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label smaller-font">
+                                C++
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/javascript_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label smaller-font">
+                                JavaScript
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/tensorflow_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label smaller-font">
+                                Tensorflow
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/sql_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label smaller-font">
+                                SQL
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-2 text-center">
+                            <div class="icon-container mb-3">
+                                <img src="{% static 'img/go_icon.png' %}" class="smaller-image">
+                            </div>
+                            <div class="label smaller-font">
+                                Go
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="text-center">
+                        <h2 id="hobbies" style="margin-top:40px;">
+                            <div>
+                                Hobbies
+                                <a class="anchorjs-link" href="#hobbies" aria-label="Anchor" data-anchorjs-icon="#" style="padding-left: 0.375em;">
+                                </a>
+                            </div>
+                        </h2>
+                        <p>
+                            When I'm not working on AI-related projects, my hobbies are
+                        </p>
+    
+                        <div class="row hobbies-row" style="margin-bottom:20px; margin-top:-5px;">
+                            <!-- Running icon -->
+                            <div class="col text-center">
+                            <div class="icon-container">
+                                <img src="{% static 'img/running_icon.png' %}">
+                            </div>
+                            <div class="icon-label">Running</div>
+                            </div>
+                            <!-- Bouldering icon -->
+                            <div class="col text-center">
+                            <div class="icon-container">
+                                <img src="{% static 'img/bouldering_icon.png' %}">
+                            </div>
+                            <div class="icon-label">Bouldering</div>
+                            </div>
+                            <!-- Gymming icon -->
+                            <div class="col text-center">
+                            <div class="icon-container">
+                                <img src="{% static 'img/gymming_icon.png' %}">
+                            </div>
+                            <div class="icon-label">Gymming</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

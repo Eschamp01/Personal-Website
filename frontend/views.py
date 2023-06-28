@@ -35,3 +35,12 @@ def process_form(request):
 def generated_itinerary(request):
     itinerary = request.GET.get('itinerary')
     return render(request, 'frontend/generated_itinerary.html', {'itinerary': itinerary})
+
+def beijing(request):
+    return render(request, 'frontend/beijing.html')
+
+def prague(request):
+    return render(request, 'frontend/prague.html')
+
+def barcelona(request):
+    return render(request, 'frontend/barcelona.html')
