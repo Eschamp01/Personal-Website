@@ -3,8 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from . import openai_api
 import json
 import pdb
-# from . import weather_api
-# from datetime import date, timedelta
+from . import weather_api
+from datetime import date, timedelta
 
 def index(request):
     return render(request, 'frontend/index.html')
@@ -32,11 +32,11 @@ def process_form(request):
         max_forecast_date = date.today() + timedelta(days=13)
         travel_params_dict['weather_string'] = ""
 
-        # if travel_params_dict['arrival_date'] < max_forecast_date:
-        #     start_date = travel_params_dict['arrival_date']
-        #     end_date = travel_params_dict['departure_date'] if (travel_params_dict['departure_date'] < max_forecast_date) else max_forecast_date
-        #     weather_string = weather_api.getWeatherForDays(travel_params_dict['destination'], start_date, end_date)
-        #     travel_params_dict['weather_string'] = weather_string
+        if travel_params_dict['arrival_date'] < max_forecast_date:
+            start_date = travel_params_dict['arrival_date']
+            end_date = travel_params_dict['departure_date'] if (travel_params_dict['departure_date'] < max_forecast_date) else max_forecast_date
+            weather_string = weather_api.getWeatherForDays(travel_params_dict['destination'], start_date, end_date)
+            travel_params_dict['weather_string'] = weather_string
 
         itinerary = openai_api.create_travel_itinerary(travel_params_dict)
         result = {'itinerary': itinerary}
