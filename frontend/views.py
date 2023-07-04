@@ -3,8 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from . import openai_api
 import json
 import pdb
-from . import weather_api
-from datetime import date, timedelta
+# from . import weather_api
+# from datetime import date, timedelta
 
 def index(request):
     return render(request, 'frontend/index.html')
