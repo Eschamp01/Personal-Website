@@ -22,19 +22,17 @@ import os
 # Recommend daily clothing based on weather - rain=raincoat+umbrella, sun=suncream, wind=coat
 # Recommend clothing to pack based on the temperature and rain probabilities
 
-# Test parameters, not used currently since testing in views.py
-# weather_api_key = os.environ.get('WEATHER_API_KEY')
-# location = "New York City, NY" # City, state/province is most accurate. Get LLM to feed this in (city dropdown is best)
+weather_api_key = os.environ.get('WEATHER_API_KEY')
 
-def getWeatherForDays(api_key, location, start_date, end_date):
+def getWeatherForDays(location, start_date, end_date):
 
-	requestUrl = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
-	requestUrl += urllib.parse.quote_plus(location)
-	requestUrl += "/" + start_date + "/" + end_date + '?' + api_key
+	location = urllib.parse.quote_plus(location)
+	requestUrl = f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/\
+{location}/{start_date}/{end_date}?key={weather_api_key}"
 
 	print(f"Weather requestUrl = {requestUrl}")
 
-	# pdb.set_trace()
+	pdb.set_trace()
 
 	try:
 			req = urllib.request.urlopen(requestUrl)
@@ -46,17 +44,15 @@ def getWeatherForDays(api_key, location, start_date, end_date):
 	req.close()
 	days = json.loads(rawForecastData)['days']
 
-	for day in days:
+	weather_string = ""
+	for i, day in enumerate(days):
 		temp = "moderate"
 		if day['tempmax'] > 77:
 			temp = "hot"
 		elif day['tempmin'] < 50:
 			temp = "cold"
 
-	return "Test weather string"
+		# cleaned up to give "temperature is hot/moderate/cold. + descriptionof day" -> feed to LLM
+		weather_string += f"``day {i+1}: temperature is {temp}; {day['description']}`` \n"
 
-# for day in days:
-#     # if day['tempmax'] > 
-#     print(f"{day['datetime']} - Temp: {day['tempmax']}F - {day['tempmin']}F. \"{day['description']}\"")
-
-#     # clean up to give "temperature is hot/moderate/cold. + description" -> feed to LLM
+	return weather_string

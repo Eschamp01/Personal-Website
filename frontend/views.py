@@ -4,9 +4,7 @@ from . import openai_api
 import json
 import pdb
 from . import weather_api
-import os
-
-weather_api_key = os.environ.get('WEATHER_API_KEY')
+from datetime import date, timedelta
 
 def index(request):
     return render(request, 'frontend/index.html')
@@ -29,10 +27,18 @@ def process_form(request):
             'timing_preciseness': request.POST.get('timing-preciseness'),
             'relaxed_first_day' : request.POST.get('relaxed-first-day'),
         }
+        pdb.set_trace()
         
-        weather_string = weather_api.getWeatherForDays(weather_api_key, travel_params_dict['destination'], \
-                                            travel_params_dict['arrival_date'], travel_params_dict['departure_date'])
-        travel_params_dict['weather_string'] = weather_string
+        # Check if any of the trip days lie within the next 14 days. If so, use the weather forecast to help plan the trip!
+        max_forecast_date = date.today() + timedelta(days=13)
+        
+        if travel_params_dict['arrival_date'] < max_forecast_date:
+            start_date = travel_params_dict['arrival_date']
+            end_date = travel_params_dict['departure_date'] if (travel_params_dict['departure_date'] < max_forecast_date) else max_forecast_date
+            weather_string = weather_api.getWeatherForDays(travel_params_dict['destination'], start_date, end_date)
+            travel_params_dict['weather_string'] = weather_string
+        else:
+            travel_params_dict['weather_string'] = ""
 
         itinerary = openai_api.create_travel_itinerary(travel_params_dict)
         result = {'itinerary': itinerary}
