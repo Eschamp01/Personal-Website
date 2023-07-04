@@ -22,35 +22,41 @@ import os
 # Recommend daily clothing based on weather - rain=raincoat+umbrella, sun=suncream, wind=coat
 # Recommend clothing to pack based on the temperature and rain probabilities
 
-weather_api_key = os.environ.get('WEATHER_API_KEY')
-location = "New York City, NY" # City, state/province is most accurate. Get LLM to feed this in (city dropdown is best)
-unit_group="us"
+# Test parameters, not used currently since testing in views.py
+# weather_api_key = os.environ.get('WEATHER_API_KEY')
+# location = "New York City, NY" # City, state/province is most accurate. Get LLM to feed this in (city dropdown is best)
 
-def getWeatherForecast(api_key, location, unit_group):
-         requestUrl = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + urllib.parse.quote_plus(location)
-         requestUrl = requestUrl+"?key="+api_key+"&unitGroup="+unit_group+"&include=days"
+def getWeatherForDays(api_key, location, start_date, end_date):
 
-         print(f"Weather requestUrl = {requestUrl}")
+	requestUrl = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
+	requestUrl += urllib.parse.quote_plus(location)
+	requestUrl += "/" + start_date + "/" + end_date + '?' + api_key
 
-         try:
-                 req = urllib.request.urlopen(requestUrl)
-         except:
-                 print(f"Could not read from: {requestUrl}")
-                 return []
-                
-         rawForecastData = req.read()
-         req.close()
-         return json.loads(rawForecastData)
-    
-weatherForecast = getWeatherForecast(weather_api_key, location, unit_group)
+	print(f"Weather requestUrl = {requestUrl}")
 
-print(f"Weather forecast for {weatherForecast['resolvedAddress']}")
-days = weatherForecast['days']
+	pdb.set_trace()
 
-# pdb.set_trace()
+	try:
+			req = urllib.request.urlopen(requestUrl)
+	except:
+			print(f"Could not read from: {requestUrl}")
+			return []
+		
+	rawForecastData = req.read()
+	req.close()
+	days = json.loads(rawForecastData)['days']
 
-for day in days:
-    # if day['tempmax'] > 
-    print(f"{day['datetime']} - Temp: {day['tempmax']}F - {day['tempmin']}F. \"{day['description']}\"")
+	for day in days:
+		temp = "moderate"
+		if day['tempmax'] > 77:
+			temp = "hot"
+		elif day['tempmin'] < 50:
+			temp = "cold"
 
-    # clean up to give "temperature is hot/moderate/cold. + description" -> feed to LLM
+	return "Test weather string"
+
+# for day in days:
+#     # if day['tempmax'] > 
+#     print(f"{day['datetime']} - Temp: {day['tempmax']}F - {day['tempmin']}F. \"{day['description']}\"")
+
+#     # clean up to give "temperature is hot/moderate/cold. + description" -> feed to LLM

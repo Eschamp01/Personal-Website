@@ -166,15 +166,16 @@
       $("#city").autocomplete({
           source: function(request, response) {
               $.ajax({
-                  url: "http://geodb-free-service.wirefreethought.com/v1/geo/cities",
+                  url: "https://api.opencagedata.com/geocode/v1/json",
                   data: {
-                      namePrefix: request.term,
-                      limit: 5  // You can limit the number of results here
+                      q: request.term,
+                      limit: 5,  // You can limit the number of results here
+                      key: 'f9c9768490b94ec9b5aac652565df2c6' // replace with your API key
                   },
                   success: function(data) {
                       // Map the results to the format expected by jQuery UI
-                      response($.map(data.data, function(item) {
-                          return { label: item.name, value: item.name };
+                      response($.map(data.results, function(item) {
+                          return { label: item.formatted, value: item.formatted };
                       }));
                   }
               });
@@ -191,7 +192,7 @@
               $(this).autocomplete("instance").menu.element.children().first().removeClass('ui-state-active');
               isItemSelected = true;
               event.preventDefault();
-    
+  
               // Set the input's value to the item that is currently focused
               activeItem = $(this).data("ui-autocomplete").menu.active;
               if (activeItem) {
@@ -219,7 +220,7 @@
         isItemSelected = true;
       });
     });
-
+  
     $(document).ready(function() {
       $('form input').keypress(function(e) { 
           var keyCode = e.keyCode || e.which; 
