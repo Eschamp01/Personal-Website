@@ -34,7 +34,7 @@ def getWeatherForDays(api_key, location, start_date, end_date):
 
 	print(f"Weather requestUrl = {requestUrl}")
 
-	pdb.set_trace()
+	# pdb.set_trace()
 
 	try:
 			req = urllib.request.urlopen(requestUrl)

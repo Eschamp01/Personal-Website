@@ -3,8 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from . import openai_api
 import json
 import pdb
-from . import weather_api
-import os
+# from . import weather_api
+# import os
 
 
 def index(request):
@@ -29,10 +29,10 @@ def process_form(request):
             'relaxed_first_day' : request.POST.get('relaxed-first-day'),
         }
 
-        weather_api_key = os.environ.get('WEATHER_API_KEY')
-        weather_string = weather_api.getWeatherForDays(weather_api_key, travel_params_dict['destination'], \
-                                            travel_params_dict['arrival_date'], travel_params_dict['departure_date'])
-        travel_params_dict['weather_string'] = weather_string
+        # weather_api_key = os.environ.get('WEATHER_API_KEY')
+        # weather_string = weather_api.getWeatherForDays(weather_api_key, travel_params_dict['destination'], \
+        #                                     travel_params_dict['arrival_date'], travel_params_dict['departure_date'])
+        # travel_params_dict['weather_string'] = weather_string
 
         itinerary = openai_api.create_travel_itinerary(travel_params_dict)
         result = {'itinerary': itinerary}
