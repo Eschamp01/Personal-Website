@@ -159,38 +159,6 @@
 
   </div>
 
-  {% comment %} <script>
-    $(document).ready(function() {
-      $('.city-select').on('select2:open', () => {
-          // After the dropdown is opened, focus the search field
-          document.querySelector('.select2-search__field').focus();
-      });
-
-        $('.city-select').select2({
-            ajax: {
-                url: function (params) {
-                    return 'http://geodb-free-service.wirefreethought.com/v1/geo/cities?namePrefix=' + params.term;
-                },
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    return {
-                        results: $.map(data.data, function(item) {
-                            return {
-                                text: item.name,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            },
-            placeholder: 'Search for a city',
-            minimumInputLength: 1  // User must type at least 1 character
-        });
-    });
-  </script> {% endcomment %}
-
   <script>
     $(function() {
       var activeItem = null;
