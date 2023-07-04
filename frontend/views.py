@@ -27,11 +27,10 @@ def process_form(request):
             'timing_preciseness': request.POST.get('timing-preciseness'),
             'relaxed_first_day' : request.POST.get('relaxed-first-day'),
         }
-        pdb.set_trace()
         
         # Check if any of the trip days lie within the next 14 days. If so, use the weather forecast to help plan the trip!
         max_forecast_date = date.today() + timedelta(days=13)
-        
+
         if travel_params_dict['arrival_date'] < max_forecast_date:
             start_date = travel_params_dict['arrival_date']
             end_date = travel_params_dict['departure_date'] if (travel_params_dict['departure_date'] < max_forecast_date) else max_forecast_date
